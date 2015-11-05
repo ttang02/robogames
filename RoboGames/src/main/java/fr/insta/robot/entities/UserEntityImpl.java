@@ -16,12 +16,13 @@ public class UserEntityImpl implements UserEntity {
 	/** serialVersionUID **/
 	private static final long serialVersionUID = 1L;
 	
+	/** L'Id */
 	private Long id;
 
 	@Override
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
-	 @Column(name = "USER_ID", unique = true, nullable = false, precision = 20, scale = 0)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USER_ID", unique = true, nullable = false, precision = 20, scale = 0)
 	public Long getId() {
 		return id;
 	}
