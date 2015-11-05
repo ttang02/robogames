@@ -2,6 +2,7 @@ package fr.insta.robot.bo;
 
 import java.io.Serializable;
 
-public interface UserEntity extends Serializable{
+public interface EvenementEntity extends Serializable {
 
+	
 }
