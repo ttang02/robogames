@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import fr.insta.robot.bo.UserEntity;
 
 @Entity
-@Table(name = "GR_USER")
+@Table(name = "RG_USER")
 public class UserEntityImpl implements UserEntity {
 
 	/** serialVersionUID **/
