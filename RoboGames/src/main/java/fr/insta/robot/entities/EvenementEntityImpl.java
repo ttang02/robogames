@@ -2,158 +2,186 @@ package fr.insta.robot.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import fr.insta.robot.bo.EvenementEntity;
 import fr.insta.robot.bo.UserEntity;
 
+@Entity
+@Table(name = "RG_EVENEMENT")
 public class EvenementEntityImpl implements EvenementEntity {
 
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
-
+	/** l'ID */
+	private Long id;
+	/** Date de debut */
+	private Date dateDebut;
+	/** Date de Fin */
+	private Date dateFin;
+	/** Adresse */
+	private String adresse;
+	/** Code Postal */
+	private int codePostal;
+	/** Ville */
+	private String ville;
+	/** nombre de places */
+	private int nbPlace;
+	/** prix */
+	private int prix;
+	/** Etat de l'événement */
+	private boolean etat;
+	/** Informations sur l'événement */
+	private String infos;
+	/** Valide */
+	private boolean valide;
+	/** Un événement à un utilisateur */
+	private UserEntity user;
+	
+	
 	@Override
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "EVE_ID",unique = true, nullable = false, precision = 20, scale = 0)
 	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	@Override
 	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.id = id;
 
+	}
 	@Override
+	@Column(name = "EVE_DATE_DEBUT", unique = false, nullable = false)
 	public Date getDateDebut() {
-		// TODO Auto-generated method stub
-		return null;
+		return dateDebut;
 	}
 
 	@Override
 	public void setDateDebut(Date dateDebut) {
-		// TODO Auto-generated method stub
-		
+		this.dateDebut = dateDebut;
+
 	}
 
 	@Override
+	@Column(name = "EVE_DATE_FIN", unique = false, nullable = false)
 	public Date getDateFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return dateFin;
 	}
 
 	@Override
 	public void setDateFin(Date dateFin) {
-		// TODO Auto-generated method stub
-		
+		this.dateFin = dateFin;
 	}
-
+	
 	@Override
+	@Column(name = "EVE_ADRESSE", unique = false, nullable = false, length = 100)
 	public String getAdresse() {
-		// TODO Auto-generated method stub
-		return null;
+		return adresse;
 	}
 
 	@Override
 	public void setAdresse(String adresse) {
-		// TODO Auto-generated method stub
-		
+		this.adresse = adresse;
+
 	}
 
 	@Override
+	@Column(name = "EVE_CODE_POSTAL", unique = false, nullable = false)
 	public int getCodePostal() {
-		// TODO Auto-generated method stub
-		return 0;
+		return codePostal;
 	}
 
 	@Override
 	public void setCodePostal(int codePostal) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.codePostal = codePostal;
 
+	}
+	@Column(name = "EVE_VILLE", unique = false, nullable = false, length = 100)
 	@Override
 	public String getVille() {
-		// TODO Auto-generated method stub
-		return null;
+		return ville;
 	}
 
 	@Override
 	public void setVille(String ville) {
-		// TODO Auto-generated method stub
-		
+		this.ville = ville;
 	}
-
+	@Column(name = "EVE_NB_PLACE", unique = false, nullable = false)
 	@Override
 	public int getNbPlace() {
-		// TODO Auto-generated method stub
-		return 0;
+		return nbPlace;
 	}
 
 	@Override
 	public void setNbPlace(int nbPlace) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.nbPlace = nbPlace;
 
+	}
+	@Column(name = "EVE_PRIX", unique = false, nullable = false)
 	@Override
 	public int getPrix() {
-		// TODO Auto-generated method stub
-		return 0;
+		return prix;
 	}
 
 	@Override
 	public void setPrix(int prix) {
-		// TODO Auto-generated method stub
-		
+		this.prix = prix;
 	}
-
+	@Column(name = "EVE_ETAT", unique = false, nullable = false)
 	@Override
 	public boolean getEtat() {
-		// TODO Auto-generated method stub
-		return false;
+		return etat;
 	}
 
 	@Override
 	public void setEtat(boolean etat) {
-		// TODO Auto-generated method stub
-		
+		this.etat = etat;
 	}
-
+	@Column(name = "EVE_INFOS", unique = false, nullable = false, columnDefinition = "LONGTEXT")
 	@Override
 	public String getInfos() {
-		// TODO Auto-generated method stub
-		return null;
+		return infos;
 	}
 
 	@Override
 	public void setInfos(String infos) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.infos = infos;
 
+	}
+	@Column(name = "EVE_VALIDE", unique = false, nullable = false)
 	@Override
 	public boolean getValide() {
-		// TODO Auto-generated method stub
-		return false;
+		return valide;
 	}
 
 	@Override
 	public void setValide(boolean valide) {
-		// TODO Auto-generated method stub
-		
-	}
+		this.valide = valide;
 
+	}
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="EVE_USER_ID")
 	@Override
 	public UserEntity getUser() {
-		// TODO Auto-generated method stub
-		return null;
+		return user;
 	}
 
 	@Override
 	public void setUser(UserEntity user) {
-		// TODO Auto-generated method stub
-		
+		this.user = user;
+
 	}
 
 }

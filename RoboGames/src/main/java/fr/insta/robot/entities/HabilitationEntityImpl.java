@@ -2,99 +2,119 @@ package fr.insta.robot.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import fr.insta.robot.bo.HabilitationEntity;
 import fr.insta.robot.bo.RoleEntity;
 import fr.insta.robot.bo.UserEntity;
 
+@Entity
+@Table(name = "RG_HABILITATION")
 public class HabilitationEntityImpl implements HabilitationEntity {
 
 	/**
 	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
+	/** ID */
+	private Long id;
+	/** Date de début */
+	private Date dateDebut;
+	/** Date de fin */
+	private Date dateFin;
+	/** Etat */
+	private boolean etat;
+	/** l'User */
+	private UserEntity user;
+	/** Role */
+	private RoleEntity role;
+	/** Informations de l'habilitation */
+	private String infos;
+	
 
 	@Override
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "HAB_ID",unique = true, nullable = false, precision = 20, scale = 0)	
 	public Long getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	@Override
 	public void setId(Long id) {
-		// TODO Auto-generated method stub
-		
+		this.id = id;
 	}
-
+	@Column(name = "HAB_DATE_DEBUT", unique = false, nullable = false)
 	@Override
 	public Date getDateDebut() {
-		// TODO Auto-generated method stub
-		return null;
+		return dateDebut;
 	}
 
 	@Override
 	public void setDateDebut(Date dateDebut) {
-		// TODO Auto-generated method stub
-		
+		this.dateDebut = dateDebut;
 	}
-
+	@Column(name = "HAB_DATE_FIN", unique = false, nullable = false)
 	@Override
 	public Date getDateFin() {
-		// TODO Auto-generated method stub
-		return null;
+		return dateFin;
 	}
 
 	@Override
 	public void setDateFin(Date dateFin) {
-		// TODO Auto-generated method stub
+		this.dateFin = dateFin;
 		
 	}
-
+	@Column(name = "HAB_ETAT", unique = false, nullable = false)
 	@Override
 	public boolean getEtat() {
-		// TODO Auto-generated method stub
-		return false;
+		return etat;
 	}
 
 	@Override
 	public void setEtat(boolean etat) {
-		// TODO Auto-generated method stub
-		
+		this.etat = etat;
 	}
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "HAB_USER_ID")
 	@Override
 	public UserEntity getUser() {
-		// TODO Auto-generated method stub
-		return null;
+		return user;
 	}
 
 	@Override
 	public void setUser(UserEntity user) {
-		// TODO Auto-generated method stub
+		this.user = user;
 		
 	}
-
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="HAB_ROL_ID")
 	@Override
 	public RoleEntity getRole() {
-		// TODO Auto-generated method stub
-		return null;
+		return role;
 	}
 
 	@Override
 	public void setRole(RoleEntity role) {
-		// TODO Auto-generated method stub
-		
+		this.role = role;
 	}
-
+	@Column(name = "HAB_INFOS", unique = false, nullable = false, length = 255)
 	@Override
 	public String getInfos() {
-		// TODO Auto-generated method stub
-		return null;
+		return infos;
 	}
 
 	@Override
 	public void setInfos(String infos) {
-		// TODO Auto-generated method stub
-		
+		this.infos = infos;
 	}
 
 }
